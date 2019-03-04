@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>类与模块</title>
+</head>
+
+<body>
+	<script>
+//		ECMA6添加了类的class标识符
+//		允许类内定义的方法省略function字符
+		
+		class person{
+			constructor(x,y){
+//				构造函数
+				this.x = x;
+				this.y = y;
+			}	
+			toString(){
+//				类内方法
+				return this.x+this.y;
+			}
+		}
+		var p = new person(2,3);
+		document.write(p.toString()+"<br>");
+		
+//		继承，extend
+		class student extends person{
+			constructor(x,y,z){		//构造函数
+				super(x,y);			//x,y参数，继承父类=super.constructor(x,y)
+				this.z = z;
+			}
+			toString(){
+				return this.z;
+			}
+		}
+		var s =  new student(2,3,4);
+		document.write(s.toString()+"<br>");
+		
+//		模块，ECMA6支持模块功能，即接口功能，使用export，和import声明和导入接口
+//		允许一个js文件使用另一个js文件的变量和方法
+		import variable1 from '/export-variable';	//module可以代替import输出整个模块
+		document.write(variable1.first);
+		
+		module area from "/export-variable";
+		
+		
+	</script>
+	
+</body>
+</html>

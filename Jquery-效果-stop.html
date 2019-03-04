@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jquery-效果-stop</title>
+	<script src="JQuery.js"></script>
+	<script>
+		$("document").ready(function(){
+			$("div").click(function(){
+				$("p").slideToggle(3000);
+			})
+			$("button").click(function(){
+				$("p").stop();
+			})
+		});
+	</script>
+	<style>
+		div,p{
+			background-color:#E5EECC;
+			width: 400px;
+			text-align: center;
+			margin: 0 auto;
+			border: solid 1px;
+		}
+		p{
+			height: 100px;
+			line-height: 100px;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<button>停止滑动</button>
+	<div>点击这里，向上/向下滑动面板</div>
+	<p>JQuery的stop（）函数停止所有动画效果</p>
+</body>
+	
+</html>

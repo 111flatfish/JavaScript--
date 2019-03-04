@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jquery-效果-Chaining</title>
+	<script src="JQuery.js"></script>
+	<style>
+		div{
+			background-color: #B6E59D;
+			height: 100px;
+			width: 100px;
+			position: relative;
+			
+		}
+		
+	</style>
+	<script>
+//		Chaining可以将多个JQuery操作链接在一起，按次序的执行
+		$("document").ready(function(){
+			$("button").click(function(){
+				$("div").css("color","red").animate({left:"100px",top:"50px",height:"200px",width:"200px"})
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<button>点击动画</button>
+	<div></div>
+</body>
+</html>

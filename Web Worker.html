@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta content="text/html" charset="utf-8">
+<title>Web Worker</title>
+</head>
+
+<body>
+	<p id="support">你的浏览器不支持HTML5的Web Worker</p>
+	<button id="stopButton">停止任务</button>
+	<button id="helloButton">发送信息</button>
+	<script>
+		//主线程需要声明接收和发送信息的方法，postMessage（）和onmessage（）
+//		var worker = new Worker("worker.js");
+//		worker.postMessage("Hello Worker!");
+//		worker.onmessage = function(e){
+//			console.log(e.data);
+//			document.write(e.data);
+//			
+//		}
+		
+//		手动控制worker线程与主线程的交互
+		function stopWorker(){
+			worker.terminate();
+		}
+		function errorHandle(e){
+			console.log(e.message,e);
+		}
+		function messageHandle(evt){
+			console.log(evt.data);
+		}
+		
+		function loadDemo(){
+			if(typeof(window.worker) != "undefine"){
+				document.getElementById("support").innerHTML = "你的浏览器支持HTML5 Web Workers";
+			   		var worker2 = new Worker("worker2.js");
+					var hellobutton = document.getElementById("helloButton");
+					hellobutton.onclick = function(){
+						worker2.postMessage("ok");
+					};
+					document.getElementById("stopButton").addEventListener("click",stopWorker,true); 
+					worker2.addEventListener("message",messageHandle,true);
+					worker2.addEventListener("error",errorHandle,true);
+					
+			   }
+		}
+		window.addEventListener("load",loadDemo,true);
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动定位-Geolocation-position</title>
+	<script src="https://map.qq.com/api/js?v=2.exp&key=IWVBZ-KE7KD-KUL4E-HSKWL-73RMQ-MCF52"></script>
+	<script>
+		function init(){
+			navigator.geolocation.getCurrentPosition(function(position){
+				var coords = position.coords;
+				var latlng = new qq.maps.Latlng(coords.latitude,coords.longitude);
+				var myPosition= {
+					zoom:14,
+					center:latlng,
+					mapTypeId :qq.maps.mapTypeId.ROADMAP
+				};
+				var map1;
+				map1 = new qq.maps.Map(document.getElementById("map"),myPosition);
+				var marker = new qq.maps.Marker({
+					position:latlng,
+					map:map1
+				});
+				var infowidow = new qq.maps.InfoWindow({
+					content:"当前位置！"
+				});
+				infowidow.open(map1,marker);
+			});
+		}
+	</script>
+</head>
+
+<body onLoad="init()">
+	<div id="map" style="height: 400px;width: 400px"></div>
+</body>
+</html>

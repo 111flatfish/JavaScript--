@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Wen Workers-多线程后台运算</title>
+</head>
+
+<body>
+	输入值：<input type="text" name="" id="num" >
+	<script>
+//		function calculate(){
+		//普通方法会使浏览器假死，单线程会一直执行
+//			var num = parseInt(document.getElementById("num").value,10);
+//			var result = 0;
+//			for(var i = 0 ; i < num ; i ++){
+//				result += i;
+//			}
+//			alert(result);
+//		}
+		var worker = new Worker("worker3.js");
+		function calculate(){
+		var num = parseInt(document.getElementById("num").value,10);
+		worker.postMessage(num);};
+		worker.onmessage = function(evt){
+			alert(evt.data);
+		}
+	</script>
+	<button onclick ="calculate()">计算</button>
+</body>
+</html>
