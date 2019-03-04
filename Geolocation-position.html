@@ -6,6 +6,8 @@
 	<script src="https://map.qq.com/api/js?v=2.exp&key=IWVBZ-KE7KD-KUL4E-HSKWL-73RMQ-MCF52"></script>
 	<script>
 		function init(){
+			//geolocation.getCurrentPosition()不在适用于不安全的网站，即需要以HTTPS等开头的网站才能执行
+			//否则会超时
 //			navigator.geolocation.getCurrentPosition(function(position){
 //				var coords = position.coords;
 //				var latlng = new qq.maps.LatLng(coords.latitude,coords.longitude);
