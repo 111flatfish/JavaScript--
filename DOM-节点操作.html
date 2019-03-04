@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM-节点操作</title>
+	<style type="text/css">
+		div{
+			margin: 1em;
+		}
+		#red{
+			border: solid 1px red;
+		}
+		#blue{
+			border: solid 1px blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="red">
+		<h1>红盒子</h1>
+	</div>
+	<div id="blue">蓝盒子</div>
+	<input id="button" type="button" value="插入">
+	<input id="button2" type="button" value="插入2">
+	<input id="button3" type="button" value="删除">
+	
+	<script>
+		//创建节点
+		function create(e){
+			return document.createElementNS?
+				document.createElementNS("http://www.w3.org/1999/xhtml",e):
+				document.createElement(e);
+		}
+		var p = create("p");
+		var tex = document.createTextNode("文本节点");
+		p.appendChild(tex);
+		document.body.appendChild(p);
+		
+//		复制节点,cloneNode的参数为false时则只复制当前节点，当为true时则复制全部
+		var p1 = document.createElement("p");
+		var h1 = document.createElement("h1");
+		var tex1 = document.createTextNode("复制节点");
+		p1.appendChild(tex1);
+		h1.appendChild(p1);
+		document.body.appendChild(h1);
+		var new_h1 = h1.cloneNode(true);
+		document.body.appendChild(new_h1);
+		
+		//插入节点,appendChild方法，在末尾添加子节点
+		var ok = document.getElementById("button");
+		ok.onclick = function(){
+			var red = document.getElementById("red");
+			var blue = document.getElementById("blue");
+			blue.appendChild(red);
+			
+		}
+//		在指定节点前添加节点，insertBefore()
+		var ok2 = document.getElementById("button2");
+		ok2.onclick = function(){
+			var red = document.getElementById("red");
+			var blue = document.getElementById("blue");
+			var h1 = document.getElementsByTagName("h1")[0];
+			red.insertBefore(blue,h1);
+		}
+		
+//		删除节点
+		var ok3 = document.getElementById("button3");
+		ok3.onclick = function(){
+			var red = document.getElementById("red");
+			var blue = document.getElementById("blue");
+			var h1 = document.getElementsByTagName("h1")[0];
+			red.removeChild(h1);
+		}
+		
+		
+	</script>
+</body>
+</html>

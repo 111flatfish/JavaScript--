@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-函数5</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			border: 1px solid #000;
+			
+		}
+		#div1 div {
+			display: none;
+			margin: 20px;
+		}
+		#div1{
+			
+			height: 300px;
+			width: 300px;
+			margin-left: 200px;
+			padding-top: 100px;
+			padding-left: 100px;
+			
+		}
+		div input{
+			width: 20px;
+			height: 20px;
+			
+		}
+		.div3{
+			
+			background: red;
+			height: 40px;
+		}
+	</style>
+	<script>
+		function abc(){
+//			alert('a');	
+			var odiv1 = document.getElementById("div1");
+			var obt = odiv1.getElementsByTagName('input');
+			var odiv = odiv1.getElementsByTagName('div');
+//			this.style.height = '40px';
+					for(var i = 0; i < obt.length ; i++)
+						{
+							obt[i].style.background = 'red';
+							
+						}
+//					this.style.background = 'red';
+						
+				}
+						
+	</script>
+</head>
+
+<body>
+	<div id="div1">
+	<input type="button" value="1" onClick="abc()">
+	<input type="button" value="2" onClick="abc()">
+	<input type="button" value="3" onClick="abc()">
+	<div class="box1" style="display: block">11</div>
+	<div >22</div>
+	<div >33</div></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMAscript5-Function&String</title>
+</head>
+
+<body>
+<!--	Function的原型函数bind可以将函数绑定到制定个对象
+-->
+	<script>
+		
+		function f(value){
+			if(typeof(value) != "number")
+				return false;
+			else{
+				return value >=this.numMin && value <= this.numMax;
+			}
+			
+		}
+		var ob = {numMin:2,numMax:4}
+		var newf = f.bind(ob);
+		document.write(newf(3)+"<br/>");
+		
+		var displayArgs = function(val1,val2,val3,val4){
+			document.write(val1+""+val2+""+val3+""+val4);
+		}
+		var emptyObject = {};
+		var displayArgs2 = displayArgs.bind(emptyObject,12,"a");		//传递的参数为为原函数的参数
+		displayArgs2();
+		
+//		String 的trim（）清除首尾空格,不更改源字符串
+		var message = "   abc def  \t\n";
+		document.write("["+message.trim()+"]");
+		document.write(message.length);
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>XML-DOM2操作XML</title>
+</head>
+
+	
+<body>
+	<script>
+//		1.创建XLM DOM对象,使用document对象的implementation的createdocument属性创建
+//		第一个参数是命名空间，第二个是根元素名称，第三个是文档类型
+		var xml = document.implementation.createDocument("http://www.mysite.cn/","root",null);
+//		2.加载xml数据
+//			1.load（）方法加载文件
+//			2.使用DOMparser的parseFromString方法创建
+			var s = "<first><second>我是XML字符串</second></first>";
+			var o = new DOMParser();
+			var xmldoc = o.parseFromString(s,"text/xml");
+		
+//		3.读取xml,自定义text与xml函数
+		function text(o){
+			var s = "";
+			var childs = o.childNodes;
+			for(var i = 0; i < childs.length; i++){
+				if(childs[i].hasChildNodes()){
+				   		s += text(childs[i]);
+				   }
+				else{
+					s += childs[i].nodeValue;
+				}
+			}
+			return s;
+		}
+		
+		function xml(o){
+			var _o = new XMLSerializer();		//XMLSerializer的serializeToString属性
+			return _o.serializeToString(o);
+		}
+		var s1 = text(xmldoc.documentElement);
+		alert(s1);
+	</script>
+	
+</body>
+</html>

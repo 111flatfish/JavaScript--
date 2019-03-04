@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA6-字符串</title>
+</head>
+
+<body>
+	<script>
+//		codePointAt(),可以查询4个字节以上的字符
+		function is32Char(char){
+			return char.codePointAt(0) > 0xFFFF;	//查询字符的参数为字符在字符串的位置
+		}
+		document.write(is32Char("吉"));
+		
+//		String.fromCodePoint()根据Unicode编码返回字符串
+		document.write(String.fromCodePoint("接".codePointAt(0)));
+		
+//		4字节以上的字符unicode编码要用大括号表示
+		var s = "u{20BB7}";
+		
+//		u修饰符可以匹配4字节以上的字符
+		var s2 = String.fromCodePoint(0x20BB7);
+		document.write(/^.$/.test(s2));		//非u修饰符匹配
+		document.write(/^.$/u.test(s2));	//u匹配
+		
+//		contains()包含检测
+	
+//		document.write(s.contains("20"));		//不支持
+		
+//		repeat()重复定义
+		document.write(s.repeat(2));
+		
+//		模板字符串，反引号，可以包含变量
+		var x = 1;
+		var y = 2;
+		document.write(`${x} + ${y} = ${x+y}`);
+	</script>
+</body>
+</html>

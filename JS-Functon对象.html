@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Js-Function对象</title>
+	<script>
+	function f(){
+		f.x = function(x){
+			return x;
+			
+		}
+		function y(a){
+			return a;
+		}
+		return y;
+	}
+		f.z = function(y){
+			return y*y;
+			
+		}
+		f();
+		alert(f.x(4));
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype HTML>
+<html>
+<head>
+<script type="text/javascript" src="JQuery.js"></script>
+<script type="text/javascript">
+	var jq = jQuery.noConflict();	//自定义JQuery的简写方式
+//	也可以用jQuery的全名jQuery
+jQuery(document).ready(function(){
+  jQuery("button").click(function(){
+    jq("p").css("background-color","red");
+  });
+});
+</script>
+</head>
+
+<body>
+<h2>This is a heading</h2>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<button type="button">Click me</button>
+</body>
+
+</html>

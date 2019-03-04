@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数式编程-元类</title>
+	<script>
+		//运算符new返回值问题
+		//当返回值是值类型数据的时候,依然是构造函数，不影响实例化
+		function F(){
+			this.x = 1;
+			return 2;
+		}
+		var f = new F();
+		alert(f.x);
+		alert(F());
+		alert(f.constructor);
+		
+		//当返回值是引用类型或者是函数体的时候，此时的构造函数就不是构造函数了，已经是普通的函数
+		function F1(){
+			this.x = 1;
+			return function(){
+				return this.x;
+			};
+		}
+		F1.prototype.y = function(){
+			alert("3");
+		}
+		var f1 = new F1();	
+		alert(f1.constructor);
+		alert(f1.x);
+		alert(F1()());
+		alert(f.y());
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

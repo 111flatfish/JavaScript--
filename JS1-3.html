@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS1-3</title>
+	<script>
+//		throw new TypeError("抛出错误！");
+		//创建自定义错误类型
+		function CustomError(message){
+			this.name = 'CustomError';
+			this.message = message;
+		}
+		CustomError.prototype = new Error();
+//		throw new CustomError("自定义的错误类型！");
+		
+		try{
+			a+b;
+		}catch(error){
+		alert("未定义变量！");
+		alert(error.message);	//错误信息
+		alert(error.name);		//错误类型
+		}
+		//catch的参数为错误类型的对象
+	
+//		使用控制台
+		function sum(num1, num2){
+			console.log("参数的值分别是："+num1+","+num2);
+			console.log("计算的结果为：");
+			var result = num1+num2;
+			console.log(result);
+			return result;
+		}
+		sum(12,34);
+	</script>
+</head>
+
+<body>
+	
+</body>
+</html>

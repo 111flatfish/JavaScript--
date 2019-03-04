@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-闭包</title>
+	<script>
+		//闭包结构可以实现保存外部函数的私有变量的数据
+		function f(x){
+			var a = x;
+			var b = function(){
+				return a;
+			}
+			a++;			//变量a更新，b函数体内的a也会更新，与a更新的位置无关
+			return b;
+		}
+		var c = f(5);
+		alert(c());
+		
+		
+		function f1(x){
+			var a = x;
+//			a++;
+			var b = a;
+			a++;			//变量a更新，b不会更新，与a更新的位置有关，因为函数是有执行顺序的
+			return b;
+		}
+		var c1 = f1(5);
+		alert(c1);
+		
+		//闭包中的私有变量不会随着外部函数的注销而消失，而是一直存在，相当于一个全局变量，其他的闭包结构都可以改变他的值
+		function f2(){
+			var a =1;
+			b = function(){
+				alert(a);
+			}
+			c = function(){
+				a++;
+			}
+			d = function(x){
+				a = x;
+			}
+		}
+		
+		function f3(x){
+			var a = [];
+			for(var i = 0; i < x.length ; i++){
+				var temp = x[i];
+				a.push(
+//					function(){
+//						alert(temp +''+x[i]);	//此时的最后一个闭包会覆盖前面所有闭包，所以temp的值为c,i的值为3
+//					}
+					
+					(function(temp,i){
+						return function(){
+							alert(temp +''+x[i]);
+						}
+					
+					})(temp,i)		//此时的闭包在不同的函数中执行，所以不会相互影响,在函数体内不需要分号
+					
+				);
+			}
+			return a;
+		}
+		function e(){
+			var a = f3(['a','b','c']);
+			for(var i = 0 ; i < a.length ; i++){
+				a[i]();
+			}
+		}
+		e();
+		
+	</script>
+</head>
+
+<body>
+	<input type="button" value="a" onClick="f2()">
+	<input type="button" value="b" onClick="b()">
+	<input type="button" value="c" onClick="c()">
+	<input type="button" value="d" onClick="d(100)">
+</body>
+</html>

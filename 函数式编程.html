@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数式编程</title>
+	<script>
+		var o = typeof 4;
+		alert(
+			(new (
+				(o == "number")? Number : 
+				(o == "string")? String : 
+				(o == "array")? Array : 
+				(o == "boolean")? Boolean :
+				Object)()).toString()
+		);								//用户可以清除小括号运算符，只要遵循运算符的优先级
+		
+		//递归
+		function f(n){
+			return (n == 1)?1:n*f(n-1);
+		}
+		alert(f(5));
+		//尾递归
+		function f1(n){
+			return (n == 1)?1:e(n,1);
+		}
+		function e(n, a){
+			return (n == 1)?a:e(n-1,a*n);
+		}
+		alert(f1(5));
+		
+		//函数原型的方法实例化后，每一个实例都是指向相同的地址,即每一个实例的y是相同的
+		function F(){
+			F.prototype.y = function(){
+				return 5;
+			}
+			
+		}
+		var a = new F();
+			var b = new F();
+			alert(a === b);
+			alert(a.y === b.y);
+		
+		//函数引用于调用
+		var f = function(x){
+			var e = function(){
+				return x;
+			}
+			return function(){
+				return e;
+			}
+		}(5);					//在a、b调用之前已经调用了一次，相当于把函数的运行结果一个闭包函数e声明一个f引用，该地址指向一个内存
+		var a = f();			//返回e
+		var b = f();			//返回e
+		alert(a === b);
+		
+		function f1(x){
+			var e = function(){
+				return x;
+			}
+			return function(){
+				return e;
+			}
+		}
+		var a1 = f1(5)();	//f1(5)是一个实例，占一个内存
+		var b1 = f1(5)();	//f1(5)是另一个实例，占一个内存，两者属于不同的内存
+		alert(a1 === b1);
+		
+		//闭包存储器
+		var f2 = function(){
+			var a = [1,2,3,4,5,6,7,8,9,0];
+			return function(a1,a2,a3,a4,a5){
+				a[0] = a1;
+				a[1] = a2;
+				a[2] = a3;
+				a[3] = a4;
+				a[4] = a5;
+				return a.join("-")
+			};
+		}();			//函数执行一次， 创建一个额外的执行环境
+		var a2 = f2(11,12,13,14,15);
+		var b2 = f2("a","b","c","d","e");
+		alert(a2);
+		alert(b2);
+		
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

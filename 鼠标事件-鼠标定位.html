@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-鼠标事件-鼠标坐标</title>
+</head>
+
+<body>
+	<div id="div1">
+	鼠标跟随
+	</div>
+	<script>
+		var pos = function(o,x,y,event){
+			var pagX = 0,pagY = 0;
+			var e = event||window.event;
+			if(e.pageX||e.pageY)
+				{
+					pagX = e.pageX;
+					pagY = e.pageY;
+				}
+			else if(e.clientX||e.clientY){
+					pagX = e.clientX + document.documentElement.scrollLeft + document.body.scrollLeft;	
+					pagY = e.clientY + document.documentElement.scrollTop + document.body.scrollTop;	
+					}
+			o.style.position = "absolute";
+			o.style.top = (pagY + y) +"px";
+			o.style.left = (pagX + x) +"px";
+			
+		}
+		var div1 = document.getElementById("div1");
+		document.onmousemove  = function(event){
+			//event是浏览器默认给事件处理函数传递的实参，不需要说明，在IE中是window.event
+			pos(div1,10,20,event);
+		}
+	</script>
+</body>
+</html>

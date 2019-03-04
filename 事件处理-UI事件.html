@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-UI事件处理</title>
+</head>
+
+<body>
+	<input type="text" name="" id="">
+	<input type="text" name="" id="">
+	<script>
+		var o = document.getElementsByTagName("input");
+		for(var i = 0; i < o.length ; i ++){
+			o[i].onfocus = function(){
+				this.style.borderStyle = "outset";
+			}
+			o[i].onblur = function(){
+				this.style.borderStyle = "inset";
+			}
+		}
+	</script>
+</body>
+</html>

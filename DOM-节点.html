@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM-节点</title>
+</head>
+
+<body>
+	<h1>DOM</h1>
+	<p>DOM是文档对象模型</p>
+	<ul>
+		<li>D表示文档</li>
+		<li>O表示是对象</li>
+		<li>M表示模型</li>
+	</ul>
+	<img src="images/baidu.jpg" alt="">
+	<img src="images/baidu.jpg" name="2" alt="">
+	
+	<script>
+		
+		function count(o){
+			var num = 0;
+			var n = o.nodeType;
+			if(n == 1){
+			   num ++;
+			   }
+			var son = o.childNodes;				//数组
+			for(var i = 0 ; i < son.length; i++){
+				num += count(son[i]);
+			}
+			return num;
+		}
+		console.log("本文档一共有"+count(document)+"个元素");
+		
+		//节点名称和值
+		var node = document.getElementsByTagName("body")[0];
+		if(node.nodeType == 1){
+		   	var value = node.nodeName;
+		   }
+		console.log(value);
+		
+		//将nodeList类数组转换为数组，可以使用数组方法
+		var tag = document.getElementsByTagName("ul")[0];
+		var a1 = Array.prototype.slice.call(tag.childNodes,0);
+		a1.reverse();
+		console.log(a1[0].nodeType);
+		console.log(a1[1].innerHTML);
+		
+		tag.onclick = function(){
+			this.style.border = "solid blue 1px";
+		}
+		//cloneNode只复制属性和样式，其他的都不复制
+		var ul1 = tag.cloneNode(true);
+		document.body.appendChild(ul1);
+		
+		//访问文档元素方法
+		//1.getElementById,通过id值来获取元素
+		//2.getElementByTagName,通过相同的元素名称获取
+		//3.getElementByName,通过name属性获取元素
+		
+//		第二个方法有一个namedItem方法可以获取自身对象中指定的元素
+		
+		var images = document.getElementsByTagName("img");
+		var news = images.namedItem("2");
+//		if(document.readyState == "complete")
+//			{
+//				console.log("completed");
+//			}
+		for(var i = 0 ;  i < tag.length; i++){
+			tag[i].setAttribute("class","red");
+		}
+		
+	</script>
+	
+</body>
+</html>

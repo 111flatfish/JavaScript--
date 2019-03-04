@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-页面滚动</title>
+</head>
+
+<body>
+	<div id="div1"></div>
+	<script>
+//		保持盒子处在离窗口的100px处下方，
+		var div = document.getElementById("div1");
+		div.style.backgroundColor = "red";
+		div.style.width = "200px";
+		div.style.height = "160px";
+		div.style.position = "absolute";
+		window.onload = f;
+		window.onscroll = f;
+		function f(){
+			div.style.top = 100 + parseInt(document.body.scrollTop)+ "px";
+			div.style.left = 100 + parseInt(document.body.scrollLeft)+ "px";
+		}
+		
+	</script>
+	<div style="height: 2000px"></div>
+</body>
+</html>

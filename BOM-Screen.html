@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BOM-Screen</title>
+	<script>
+		function o(url){
+			var w = screen.availWidth/2;
+			var h = screen.availHeight/2;
+			var t = h/2;
+			var l = w/2;
+			var p = "top="+t+",left="+l+",width="+w+",height"+h;
+			var win = window.open(url,"url",p);
+			win.focus();
+		}
+		o("https://www.baidu.com/");
+		
+		重设window窗口的大小和位置
+		window.onload = function(){
+			timer = window.setInterval("jump()",1000);
+			
+		}
+		function jump(){
+			window.resizeTo(100,200);
+			x = Math.ceil(Math.random()*1024);
+			y = Math.ceil(Math.random()*760);
+			window.moveTo(x,y);
+		}
+		jump();
+		alert("2");
+	</script>
+</head>
+
+<body>
+</body>
+</html>

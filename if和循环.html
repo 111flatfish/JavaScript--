@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-if条件和循环</title>
+	<style>
+		#div1 input{
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+		}
+	</style>
+	<script>
+		 function abc(){
+			 	var odiv = div1.getElementsByTagName('input');
+				var obut = document.getElementById('but1');
+			for(var i = 0; i < odiv.length ; i++)
+				{
+					odiv[i].style.background = 'blue';
+				}
+			
+		}
+	</script>
+</head>
+
+<body>
+<!--	
+1.所有变量声明类型为var 
+2.获取元素的id或者标签名可以从document开始，也可以从父元素开始
+3.数组的获取方法是getelmentsbytagname
+-->
+	<input type="button" value="数组" id="but1" onClick="abc();">
+	<div id="div1">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMAscript-Object</title>
+</head>
+
+<body>
+	<script>
+//		Object.create()可以快速的创建一个对象，参数为原型和属性描述符
+		var newObject = Object.create(null,
+						  {shape:{
+						  value:"huge"
+						  },
+						  size:{
+						  value:"large"
+						  }
+						  }
+		
+		);
+		document.write(newObject.shape+"<br/>");
+		document.write(newObject.size+"<br/>");
+		document.write(Object.getPrototypeOf(newObject)+"<br/>");
+		
+		var firstline = {x:undefined,y:undefined};
+		document.write("firstline prototype:"+Object.getPrototypeOf(firstline)+"<br/>");
+		
+		//定义属性，三个参数，定义的对象，属性名称，描述符
+		Object.defineProperty(newObject,"newProperty",{value:500});
+		document.write(newObject.newProperty);
+		
+//		访问属性
+		var arr = Object.getOwnPropertyNames(newObject);
+		document.write(arr);
+		
+		
+		</script>
+</body>
+</html>

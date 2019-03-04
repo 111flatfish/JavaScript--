@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMAAScript-JSON</title>
+</head>
+
+<body>
+	<script>
+//		序列化JSON，JSON.stingify()方法,脚本的对象或者方法转换为JSON
+		var arr = ["a","b","c"];
+		var str = JSON.stringify(arr);
+		document.write(str+"<br/>");
+		
+//		解析JSON，JSON.parse()方法，将JSON字符串转换成脚本的对象或者数组
+		var newArray = JSON.parse(str);
+		while(newArray.length>0){
+			  document.write(newArray.pop()+"<br/>");
+			  }
+	</script>
+</body>
+</html>

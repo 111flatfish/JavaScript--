@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-表单事件处理-选择文本</title>
+</head>
+
+<body>
+	<input type="text" id="a" value="请选择任意文本！">
+	<input type="text" id="b" >
+	
+	<script>
+//		将a中的选择文本复制到b中
+		var a = document.getElementById("a");
+		var b = document.getElementById("b");
+		a.onselect = function(){
+//			兼容IE
+			if(document.selection){
+				o = document.selection.createRange();
+				if(o.text.length > 0){
+					b.value = o.text;
+				}
+			}
+			else{
+//				DOM
+				p1 = a.selectionStart;
+				p2 = a.selectionEnd;
+				b.value = a.value.substring(p1,p2);
+			}
+		}
+	</script>
+</body>
+</html>

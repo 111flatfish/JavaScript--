@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数调用模式</title>
+	<script>
+		//方法调用
+		var obj  = {
+			value:0,
+			increment:function(inc){			//改变对象obj的value值的方法
+				this.value += typeof inc === "number"? inc:1;	
+			}
+			
+		}
+		obj.increment();
+		document.write(obj.value);
+		document.write("<br/>");
+		obj.increment(2);
+		document.write(obj.value);
+		
+		//函数调用
+		var obj2 = {
+			value:1,
+			dou:function(){
+				var that = this;		//把调用dou的对象赋给一个私有变量，这样可以让this让其他函数调用的时候修改的是该对象的值，而不是window的值
+				var helper = function(){
+					return that.value *=2;
+				}
+				helper();//没有调用对象，默认为window，如果不声明that变量，则此时helper的this指向window对象
+			}
+		}
+		obj2.dou();
+		document.write("<br/>");
+		document.write(obj2.value);
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

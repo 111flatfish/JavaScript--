@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA6-状态机</title>
+</head>
+
+<body>
+	<script>
+//		function * main(){
+//			//把回调函数的处理操作写到状态机里面，处理句柄放到请求里
+//			var result = yield request("http://some.url");
+//			var resp = JSON.parse(result);
+//			console.log(resp);
+//		}
+//		
+//		function request(url){
+//			makeAjaxCall(url,function(response){
+//				it.next(response);			//再次调用next函数，调用状态机里面的回调函数处理数据
+//			});
+//		}
+//		var it = main();
+//		it.next();
+		
+		function *numbers(){
+			let file = new FileReader("numbers.txt");
+			try{
+				while(file.eof){
+					  yield parseInt(file.readLine(),5);
+					  }
+			}catch(error){
+				
+			}
+		}
+		var g = numbers();
+		g.next();
+		var result = g.next();
+//		document.write(result.value);
+		
+		function *fibonaci(){
+			let [pre,curr] = [0,1];
+			for(;;){
+				[pre,curr] = [curr,pre+curr];
+				yield curr;
+			}
+			
+		}
+		for(let v of fibonaci()){
+			if(v > 1000)
+				break;
+			console.log(v);
+		}
+		
+//		yield* 返回一个遍历器，如果是用for/of进行遍历则会继续遍历返回的遍历器
+//		遍历二叉树，中序遍历
+		function tree(left,label,right){
+			this.left = left;
+			this.label = label;
+			this.right = right;
+		}
+		function *intree(t){
+			if(t){
+				yield *intree(t.left);
+				yield t.label;
+				yield *intree(t.right);
+			}
+		}
+		function maketree(arr){
+			if(arr.length == 1){
+			   	return new tree(null,arr[0],null);
+			   }
+			return new tree(maketree(arr[0]),arr[1],maketree(arr[2]));
+		}
+		
+		var tree1 = new maketree([[["a"],"b",["c"]],"d",[["e"],"f",["g"]],["h"]]);
+		var result1 = [];
+		for(let node of intree(tree1)){
+			document.write(node+"<br/>");
+		}
+		
+	</script>
+	
+</body>
+</html>

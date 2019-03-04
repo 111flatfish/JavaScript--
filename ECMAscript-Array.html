@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMAscript-Array</title>
+</head>
+
+<body>
+	<script>
+//		定位,indexOf(),lastIndexOf()
+		var a = [1,2,3,4];
+		document.write(a.indexOf(2));
+		
+//		迭代
+//		foreach(),为每个元素执行回调函数，没有返回值
+		function each(value,index,arr){
+			document.write("value:"+value+"<br/>");
+		}
+		a.forEach(each);
+		
+//		map(),每个元素都执行回调函数，有返回值
+		
+		function map(value,index,arr){
+			return value*index;
+		}
+		var result = a.map(map);
+		document.write(result+"<br/>");
+		
+//		filter(),过滤掉值为false的元素，返回true的元素
+		
+		function filter1(value,index,arr){
+			if(value%2 == 0 )
+				return true;
+			
+		}
+		var result2 = a.filter(filter1);
+		document.write(result2);
+		
+		
+	</script>
+</body>
+</html>

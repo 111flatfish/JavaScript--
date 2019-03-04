@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA-Array-汇总</title>
+</head>
+
+<body>
+	<script>
+//		reduce()方法提供累计数组值的效果,参数如果不提供初始值previousvalue则自动选出第一个值作为初始值
+		var  a = [1,2,3,4];
+		function reduce1(previousvalue,currentvalue){
+			return previousvalue+":"+currentvalue;
+		}
+		var result = a.reduce(reduce1,5);
+		document.write(result);
+//		reduceRight()方法与reduce方法类似，只是从数组右侧开始调用回调函数
+	</script>
+</body>
+</html>

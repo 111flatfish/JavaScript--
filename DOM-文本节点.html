@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM-文本节点</title>
+</head>
+
+<body>
+<!--	访问文本节点-->
+<!--	可以用innerText属性访问-->
+	<div id="div1">div 元素
+		<p>p 元素</p>
+	</div>
+	<script>
+		var div = document.getElementById("div1");
+		var text = div.innerText;
+		alert(text);
+		
+//		创建文本节点
+//		createTextNode（data）
+		
+//		读取HTML字符串innerHTML,所有的字符串包含标签在内都会读取
+		var s = div.innerHTML;
+		alert(s);
+		
+		//仅遍历元素节点，而不是其他节点
+		//首元素
+		function first(e){
+			var e = e.firstChild;
+			while(e && e.nodeType!= 1){
+				 e = e.nextSibling;
+				  }
+			return e;
+		} 
+		
+		//获取指定的父元素
+		function parent(e,n){
+			var n = n||1;			//默认向父级
+			for(var i = 0; i < n ; i++){
+				if(e!=null)
+					e = e.parentNode;
+			}
+			return e;
+		}
+		
+		//
+	</script>
+</body>
+</html>

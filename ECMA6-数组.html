@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA6-数组</title>
+</head>
+
+<body>
+	<script>
+//		find函数寻找符合条件的第一个元素
+		document.write([1,2,45,23].find(function(index,value,arr){
+			return value < 10;
+		})+"<br/>");
+		
+//		findindex（）返回第一个符合条件的元素下标
+		document.write([1,2,45,23].findIndex(function(index,value,arr){
+			return value < 10;
+		})+"<br/>");
+		
+//		fill()参数填充数组
+		document.write(["2","3","3"].fill(4));
+		
+//		推导，允许在现有数组基础上生成新数组
+//		var a1= [2,3,4,5];
+//		var a2 = [for(i of a1)i*2];
+//		document.write(a2);
+		
+//		对象
+//		符号数据，symbol（）函数用于生成一个独立的原始数据，用于对象的标识符，可以减少属性的耦合性
+		let w1 = Symbol();
+		var a = {};
+		a[w1] = 100;
+//		要在对象内使用symbol必须要用属性名表达式
+		let speciaMethod = Symbol();
+		let obj = {
+			[speciaMethod]:function f(){}
+			
+		}
+		
+//		代理防护层，Proxy（）用于过滤外界对对象的访问
+//		get访问拦截函数
+		var a2 = {w1:100};
+		var proxy = new Proxy(a2,{
+			get:function(target,property){
+				if(property in target){
+					return target[property]*2;
+				}
+				else{
+					throw new ReferenceError("属性不在对象中！");
+				}
+			}
+			
+		});
+		document.write(proxy.w1);
+		
+//		set设置属性值
+		let validator = {
+			set:function(obj,prop,value){
+				if(prop == "w1"){
+				   if(value >300)
+					   throw RangeError("超出范围！");
+					if(!Number.isInteger(value)){
+					   throw TypeError("类型错误！");
+					   }
+				   }
+				obj[prop] = value;
+				
+			}
+			
+		}
+		var person = new Proxy(a2,validator);
+		person.w1 = 140;
+		document.write(person.w1);
+		person.w1 = "yound";
+		document.write(person.w1);
+		
+		
+	</script>
+</body>
+</html>

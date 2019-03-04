@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-错误处理</title>
+</head>
+
+<body>
+	<script>
+		window.onerror = function(message){
+			alert(
+				"错误原因：" + arguments[0]+
+				"\n错误URL文件：" + arguments[1]+
+				"\n错误行数：" + arguments[2]
+			);
+			return true;
+		}
+		a.innerHTML = "";
+	</script>
+</body>
+</html>

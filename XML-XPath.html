@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>XML-XPath</title>
+</head>
+
+<body>
+<!--	XPath
+-->
+	<script>
+//		IE中的XPth
+		function text(o){
+			var s = "";
+			var childs = o.childNodes;
+			for(var i = 0; i < childs.length; i++){
+				if(childs[i].hasChildNodes()){
+				   		s += text(childs[i]);
+				   }
+				else{
+					s += childs[i].nodeValue;
+				}
+			}
+			return s;
+		}
+		
+		function xml(o){
+			var _o = new XMLSerializer();		//XMLSerializer的serializeToString属性
+			return _o.serializeToString(o);
+		}
+		
+		function xmldoc(){
+			var a = [
+				"MSXML2.DOMDocument.5.0",
+				"MSXML2.DOMDocument.4.0",
+				"MSXML2.DOMDocument.3.0",
+				"MSXML2.DOMDocument",
+				"Microsoft.XmlDom"
+			];
+			for(var i = 0 ; i < a.length ; i++){
+				try{
+					var o = ActiveXObject(a[i]);
+					return o;
+				}catch(e){}
+
+			}
+			throw Error("该浏览器不支持ActiveX插件！");
+		}
+		
+//		var o = xmldoc();
+//		o.load("test.xml");
+//		var xpath = "second/third";
+//		var nodes = o.documentElement.selectNode(xpth);
+//		for(var i = 0 ; i < nodes.length ; i++){
+//			alert(nodes[i].xml);
+//		}
+		
+//		DOM3中的XMLXPath
+		var xmldoc = document.implementation.createDocument("","",null);		//创建xmldoc对象
+		xmldoc.async = false;
+		xmldoc.load("test.xml");			//高版本的Mozilla浏览器除了Firefox外都不支持load加载xml
+		var e = new XPathEvaluator();
+		var c = e.evaluate("second/third",xmldoc.documentElement,null,XPathResult.ORDERED_NODE_ITERATOR_TYPE,null);
+		
+		var n = c.iterateNext();
+		while(n){
+			  alert(xml(n));
+				n = c.iterateNext();
+			  }
+		
+	</script>
+</body>
+</html>

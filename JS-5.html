@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<script>
+//		fromCharcode/charCodeAt()两个函数是把字符串编码转换成字符串，另一个是把字符串转换成字符串编码
+		
+//		charAt/charCodeAt/indexOf/lastIndexOf查找字符串
+//		charAt/charCodeAt是根据下标找字符串、indexOf/lastIndexOf是根据字符串找下标
+		var a = "javascript";
+		alert(a.charAt(4));
+		alert(a.indexOf("a"));
+		
+//		slice/substring()用于截取字符串
+//		根据起始下标截取
+		var s = "javascript/";
+		var a1 = s.indexOf("va");
+		var a2 = s.indexOf("/",a);
+		var a3 = s.substring(a1,a2);
+		alert(a3);
+		var a4 = s.replace("va","av");
+		alert(a4);
+		
+//		split()会把字符串分成数组，join函数会把数组转换成字符串
+//		有一个参数时
+		var a5 = "javascript";
+		var a6 = a5.split("");
+		alert(a6);
+//		有两个参数时，第二个参数指定数组的长度，返回的字符串不会超过该数组长度
+		var a7 = a5.split("",4);
+		alert(a7);
+		
+//		valueOf和toStrin方法都是返回字符串的原始值
+		var a8  = "javascript";
+		String.prototype.toString = function(color){
+			var color = color || "red";
+			return '<font color = "'+color+'">' + this.valueOf() + '</font>';
+			
+		}
+		document.writeln(a8.toString());
+		document.writeln(a8.toString("blue"));
+		
+		//重写截取字符串的方法，一个是静态方法，一个是对象方法
+		var left = String.prototype.left = function(){
+			var l =	arguments.length;//获取参数长度
+			
+			if(l == 0)
+				{throw new Error("没有参数！");}
+			else if(l == 1){
+					//参数为1则说明了是对象方法,参数是截取的结束下标
+				var n = arguments[0];
+				if(n > 0){
+					return this.substring(0,n);
+				}
+				else if(n < 1){
+					return "";
+				}
+				else{
+					throw new Error("参数类型错误！");
+				}
+					}
+			else{
+//					参数为2则说明是静态方法
+				var str = arguments[0];
+				var n = arguments[1];
+				if(typeof str == "string" && n > 0){
+				   return str.substring(0,n);
+				   }
+				else{
+					throw new Error("参数类型错误！");
+				}
+			}
+		}
+//		清除字符串左右两侧的空格
+		var trim = String.prototype.trim = function(){
+			return (arguments[0]? arguments[0] : this).toString().replace(/(^\s*)|(\s*$)/gm,"");
+		}
+		
+		//检测特殊字符
+		String.prototype.check = function(){
+			if(arguments.length == 0){
+				throw new Error("没有参数！");
+			}
+			var a = [];
+			_this = this;
+			for(var j = 0; j < arguments.length; j++){
+				a.push(arguments[j]);
+			}
+			var i = -1; 	//定义标志
+			a.each(function(){
+				//each为数组的扩展方法，用于迭代数组
+				if(i != -1)
+					return true;
+				i = _this.search(this);
+				
+				
+});
+			if(i == -1)
+					return false;
+				else
+					return true;		
+}
+//		自定义加密函数
+		var taCode = function(str){
+			var key = "123456789ABCDEFGHIJKLMNOPQRSTUVVWXYZ";
+			var l = key.length;
+			var a = str.split('');
+			var b,b1, b2, b3,s= "";
+			for(var i = 0 ; i <str.length; i++ ){
+				b = str.charCodeAt(i);
+				b1 = b % l;
+				b = (b - b1)/l;
+				b2 = b % l;
+				b = (b - b2)/l;
+				b3 = b % l;
+				s += a[b3] + a[b2] + a[b1];
+			}
+			return s;
+			
+		}
+		
+//		自定义解密函数
+		var fromCode = function(str){
+			var key = "123456789ABCDEFGHIJKLMNOPQRSTUVVWXYZ";
+			var l = key.length;
+			var b ,b1 ,b2,b3,d= 0,s;
+			s = new Array(Math.floor(str.length/3));
+			b = s.length;
+			for(var i = 0; i< b; i++){
+				b1 = key.indexOf(str.charAt(d));
+				d++;
+				b2 = key.indexOf(str.charAt(d));
+				d++;
+				b3 = key.indexOf(str.charAt(d));
+				d++;
+				s[i]= b1*l*l +b2*l+ b3;
+			}
+			b = eval("String.fromCharCode("+s.join(',')+")");
+			return b;
+		}
+		
+		var s = "<h1>title<h1><p>html<p>";
+		
+		
+			</script>
+	
+</head>
+
+<body>
+
+
+</body>
+</html>

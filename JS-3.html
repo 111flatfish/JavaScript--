@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-3</title>
+	<script>
+//		逻辑运算符 && ,当左边表达式为真的时候则执行左边的代码，否则不执行
+		var n = 3;
+//		(n = 2) && alert(2);
+		(n = 3) && alert(3);
+//		逻辑运算符 ||，当左边表达式为真的时候，不执行右边代码，否则计算右边的表达式
+		var n1 = 3;
+		(n1 = 2) || alert(2);
+		(n1 = 3) ||	alert(3);
+		
+//		两个逻辑非运算会返回改值的布尔值
+		alert(!!5);
+		
+//		两个字符串比较会比较他们的字符编码
+		alert("a" > "b");//a = 61,b = 62
+		
+		//字符串与数字比较，会把字符串转换为数字
+		alert("1" < 3);
+		alert("a" > 3);//a为非数值，返回NaN
+		
+//		instanceof检测左边对象实例是否属于右边的构造器或者类名
+		var a = new Array();
+		alert(a instanceof Array);
+		alert(a instanceof Object);
+		alert(a instanceof Function);
+		
+		//delete删除对象属性，数组元素或变量，成功返回true，失败返回false
+		var a1 = {
+			x:1,
+			y:2
+		}
+		alert(a1.x);//存在
+		delete(a1.x);//删除
+		alert(a1.x);//undefined
+//		删除不存在的对象也返回true
+		alert(delete(a1.z));
+		
+		function sum()
+		{
+			var nResult  = 0;
+			for(var i = 0, l = arguments.length; i < l ; i++)
+				{
+					nResult += 1000*parseFloat(arguments[i]) || 0;
+				}
+			
+			return nResult.toFixed(3)/1000;
+		}
+		
+		alert(sum(1,3,'4'));
+	</script>
+</head>
+
+<body>
+</body>
+</html>

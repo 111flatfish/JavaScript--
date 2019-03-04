@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<script>
+		//typeof函数返回数据的类型，
+		//对于原始值来说
+		//在复制语句中值是通过副本传递的
+//		alert(typeof 1);
+//		var n = 123,a,b[],c{};
+//		a = n;
+//		b[0] = n;
+//		c.x = n;
+//		(a == b[0])&&(a == c.x)&&(b[0] == c.x)&&alert("复制的值是相等的！");
+		
+		//在函数传参过程中值也是副本传递的,原本的值并不会发生任何改变
+		var a = 123;
+		function f(x){
+			x++;
+		}
+		f(a);
+		alert(a);
+		
+		//对于引用值来说
+//		赋值时
+		var a = [1,2,3];
+		var a1 = [1,2,3];
+		b = a;
+		b[0] = 4;
+		alert(a[0]);//a数组的0号元素也变为4，相当于b指针指向了a指向的内存地址
+		
+		//传递时
+		function f1(x){
+				x[0] = 5;
+					   
+					  }
+		f1(a1);
+		alert(a1);
+		
+		var s = "abc1";
+		var o = new String(s);
+		function f2(v){
+			v.toString = function(){
+				return 1234;}
+		}
+		f2(s);
+		alert(s);
+		f2(o);
+		alert(o);
+		
+		//判断value是否是数值
+//		var isNumber = function isNumber(value){
+//				return typeof value=== 'number'&& isFinite(value);
+//		}
+//		(a == "undefined")&&(a = 0);
+//		alert(a);
+		
+		//数组元素的类型可以不相同
+		//第一种定义数组类型变量，直接量
+		var a5 = [[1,2],{x:1,y:2},function(){alert("我是数组元素！")}];
+		alert(a5[0]);
+		a5[2]();
+		//第二种定义数组类型变量，Array()构造函数
+		var a6 = new Array();
+		a6[0] = 1;
+		a6[1] = "数组元素2!";
+		
+		//函数function（）不声明名称的叫匿名函
+		var a6 = function(){
+			return 1;
+		}
+		//构造函数通过this指针定义属性
+		function f2(){
+			this.a = 1;
+			this.b = function(){
+				return this.a + this.a;
+			}
+		}		
+		var f3 = new f2();
+		//如果两个函数同名，则在编译期会将后面的函数覆盖前面的函数
+		
+		function f4(){
+			return 1;
+		}
+		alert(f4());
+		function f4(){
+			return 2;
+		}
+		alert(f4());
+		
+		//如果匿名函数的变量名与函数名相同，且在前面，则编译期会是函数的索引通过，但在执行期
+		//匿名函数的变量名会覆盖掉函数名，即匿名函数的变成函数新的索引
+		
+		var f5 = function(){
+			return 1;
+		}
+		alert(f5());
+		function f5(){
+			return 2;
+		}
+		alert(f5());
+		
+		//如果匿名函数的变量名与函数名相同，且在后面，则会先执行前面的函数，再执行匿名函数
+		
+		var f6 = function(){
+			return 1;
+		}
+		alert(f6());
+		function f6(){
+			return 2;
+		}
+		alert(f6());
+		
+		//如果两者都是匿名函数则会两者都会执行
+		
+//		检测数据类型
+		function typeOf(o){
+			var _toString = Object.prototype.toString;
+			var _type ={
+				"undefined" : "undefined",
+				"number"  : "number",
+				"boolean" : "boolean",
+				"string" : "string",
+				"[object Function]":"function",
+				"[object RegExp]":"regexp",
+				"[object Array]":"array",
+				"[object Date]":"date",
+				"[object Error]":"error",
+				
+			}
+			return _type[typeof o] || _type[_toString.call(o)] || (o? "object":"null");
+		}
+		alert(typeOf(a5));
+	
+		//装箱，test()方法检测当前对象的数据类型是否是Object的实例
+		Object.prototype.test = function(){
+			alert(typeof this);
+			alert(this instanceof Object);
+			alert(this.constructor == Number);
+			alert(this.constructor == String);
+		}
+		var a8 = 1;
+		a8.test();
+	</script>
+</head>
+
+<body>
+</body>
+</html>

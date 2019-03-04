@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-4</title>
+	<script>
+//		break和continue可以添加标签来实现跳转
+		outloop:for(var i = 0 ; i < 3; i++)
+			{
+				switch(i){
+					case 2:
+						break outloop;//直接跳出循环体，不在弹出2
+						
+						}
+				alert(i);
+			}
+		//documents的所有属性都可以遍历
+		for(var i= 0 in document){
+			document.write("document."+i+"="+document[i]);
+			document.write("<br/>");	
+		}
+			//Object的所有内置对象属性都不可读取，但自定义的Object属性可以枚举
+			Object.a = 1;
+			Object.b = 2;
+			for(var i = 0 in Object){
+				alert(i);
+				alert(Object[i]);
+		}
+		//取出10000内数字顺序颠倒后等于原值的数
+		function symmetry(num){
+			var arr = [];
+			while(--num>10){
+				  var reverseNum = num.toString().split('').reverse().join('');
+					(reverseNum == num)&& (arr.push(num));
+				  }
+			return arr;
+		}
+		var result = symmetry(10000);
+		document.write(result);
+		document.write("<br/>");
+		
+		//取a-b之间的随机数并排序
+		var iArray = [];
+		function getRandom1(istart,iend){
+			var iChoose = iend - istart +1 ;
+		
+				return Math.floor(Math.random()*iChoose)+istart;
+				
+		}
+		for(var i = 0 ; i < 10 ; i++){
+			iArray.push(getRandom1(10,50));
+		}
+		iArray.sort();	//排序方法sort（）；
+		document.write(iArray);
+		
+		//杨辉三角
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

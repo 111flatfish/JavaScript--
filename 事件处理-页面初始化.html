@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-页面初始化</title>
+</head>
+
+<body onload  = "f1()">
+<!--	load只有在页面完全加载完毕后才会触发-->
+	<script>
+//		两种方式绑定事件，如果两种同时出现则window绑定的事件会覆盖掉body的事件属性
+//		1.为window对象注册事件处理函数，多个window绑定的事件最终只有一个会被调用
+//		window.onload = f;
+//		function f(){
+//			alert("页面加载完毕！");
+//		}
+//		2.给body标签定义onload事件属性
+		function f1(){
+			alert("body页面加载");
+		}
+		
+//		load事件类型不能直接调用函数
+//		两种方法
+//		1.通过body的事件属性形式调用
+//		2.通过函数嵌套或者闭包函数实现
+//		嵌套函数，这种结构可以为onload绑定多个事件
+		window.onload = function(){
+			f2("海，你好");
+			f4("多磨,你好");
+		}
+		function f2(a){
+			alert(a);
+		}
+		function f4(a){
+			alert(a);
+		}
+//		闭包实现，虽然是直接调用了一个函数，但返回的依然是一个函数
+//		window.onload = f3("hello,你好");
+//		function f3(a){
+//			return function(){
+//				alert(a);
+//			}
+//		}
+//		页面卸载
+		window.onbeforeunload = function(e){
+			return "没有保存";
+		};
+		
+		
+	</script>
+</body>
+</html>

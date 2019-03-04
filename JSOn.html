@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSON</title>
+</head>
+
+<body>	
+	<script>
+//		JSON数据可以直接访问
+		var  books = [
+			{"title":[{"lang":"cn"},"XPath语言基础"],"author":"w3c","date":"2014","price":30.5},
+			{"title":[{"lang":"en"},"精通XPath"],"author":"css2","date":"2014","price":50}
+			
+		]
+		alert(books[0].title[1]);
+		
+//		利用Ajax返回的JSON对象responseText是一个字符串，需要用（）将其转换为JSON对象,
+		function parseJSON(responseText){
+			return ('('+responseText+')');
+		}
+		
+//		如果是以JSON-P的格式将JSON以动态脚本的形式插入js中，就必须要用回调函数包装，必须先声明回调函数
+		parseJSON([
+			{"title":[{"lang":"cn"},"XPath语言基础"],"author":"w3c","date":"2014","price":30.5},
+			{"title":[{"lang":"en"},"精通XPath"],"author":"css2","date":"2014","price":50}
+			
+		]);
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-函数02</title>
+	<style>
+		*{
+			padding:0;
+			margin: 0;
+		}
+		#div1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin-top: 50px;
+			margin-left: 20px;
+		}
+	</style>
+	<script>
+	function changed1(name,value){
+		var oDiv = document.getElementById("div1");
+		oDiv.style[name] = value;
+	}
+	</script>
+</head>
+
+<body>
+<!--	
+	注意点：参数值不能用双引号，JS最好不用双引号
+	1.属性的访问可以用中括号来代替点号，相当于属性选择器，这样可以将属性名作为参数传进函数里
+	2.
+-->
+	<input type="button" value="变色" onClick="changed1('background','green')">
+	<input type="button" value="变长" onClick="changed1('width','200px')">
+	<input type="button" value="变宽" onClick="changed1('height','200px')">
+	<div id="div1"></div>
+</body>
+</html>

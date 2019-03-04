@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA6-遍历器</title>
+</head>
+
+<body>
+	遍历器是一种协议，任何对象只要部署了该协议，就可以完成遍历操作，遍历是指用for/of循环
+	<br>
+<!--	部署了next（）方法的对象都具有遍历器功能-->
+	<script>
+		function f(arr){	//遍历器
+			var nextIndex = 0;
+			return {
+				next:function(){
+					return nextIndex < arr.length?
+						{value:arr[nextIndex++],done:false}:
+						{value:undefined,done:true}
+				}
+			}
+		}
+		
+		function f1(){	//遍历器
+			var nextIndex = 0;
+			return {
+				next:function(){
+					return {value:nextIndex++,done:false}
+				}
+			}
+		}
+		var a = [1,2,3,4,5];
+		var it = f(a);
+		var it2 = f1();
+		document.write(it.next().value);
+		document.write(it.next().value);
+		document.write(it.next().value);
+		document.write(it.next().value);
+		document.write(it.next().done);
+		
+//		for(var n of it2){
+//			if(n > 3)
+//				break;
+//			console.log(n);
+//		}
+		
+//		for/of 可遍历数组、类数组的对象、DOMNodeList、Set、Map结构、Generator对象、字符串
+		let str = "hello!";
+		for(let s of str){
+			console.log(s);
+		}
+		
+	</script>
+</body>
+</html>

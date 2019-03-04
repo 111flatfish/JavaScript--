@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数式编程-继承</title>
+	<script>
+		//原型继承，每个类只有一个原型对象所以只能实现单继承，子类继承的是父类的一个实例，所以
+//		继承后的原型有的参数没有动态性
+		function A(x){
+			this.a1 = x;
+			this.geta1 = function(){
+				return a1;
+			}
+		}
+		function B(x){
+			this.b1 = x;
+			this.getb1 = function(){
+				return b1;
+			}
+		}
+		function C(x){
+			this.c1 = x;
+			this.getc1 = function(){
+				return c1;
+				}
+		}
+		B.prototype = new A(1);
+		C.prototype = new B(2);
+		
+		//类继承,可以设置动态参数
+		function D(x){
+			this.x = x;
+			this.saying= function(){
+				alert("我是基类");
+			}
+		}
+		function E(x){
+			
+			D.call(this,x);
+			this.saying = function(){
+				return this.x;
+			}
+		}
+		E.prototype = new D(1);
+		var e = new E(2);
+		alert(e.saying());
+		
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>

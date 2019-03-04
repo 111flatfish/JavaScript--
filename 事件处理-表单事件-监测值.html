@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-表单处理-change事件</title>
+</head>
+
+<body>
+<!--	change事件可以监测文本值的变化、下拉框的选择以及其他表单元素的值的变化-->
+
+	<input type="text" id="a">
+	<input type="text" id="b">
+	<select name="" id="">
+		<option value="http://www.baidu.com">百度</option>
+		<option value="http://www.google.cn">Google</option>
+		<option value="http://www.douyu.com/99999">宝哥</option>
+	</select>
+	<input type="radio" name="r" id="" value = "1" checked = "checked">
+	<input type="radio" name="r" id="" value = "2">
+	<input type="radio" name="r" id="" value = "3">
+	<script>
+//		文本框值的变化
+		var a = document.getElementById("a");
+		var b = document.getElementById("b");
+		
+			a.onchange = function(){
+				//只有change事件发生后才b才显示出文本
+				a.onkeydown = function(){
+					b.value = a.value;
+				}
+			}
+		
+		
+//		选择框值的变化
+		var s = document.getElementsByTagName("select")[0];
+		s.onchange = function(){
+			window.open(this.value,"");
+		}
+//		单选按钮的变化
+		var r = document.getElementsByTagName("input");
+		for(var i = 2 ; i < r.length ; i++){
+			r[i].onchange = function(){
+				alert(this.value);
+			}
+		}
+	</script>
+	
+</body>
+</html>
+

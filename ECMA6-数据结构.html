@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ECMA6-数据结构</title>
+</head>
+
+<body>
+	<script>
+//		Set(）类似数组，成员的值都是唯一的
+		var s = new Set();
+		[2,3,4,5,5,4,6].map(x=>s.add(x));
+		for(i of s){console.log(i)};
+		document.write(s.size+"<br/>");
+		document.write(s.add(9)+"<br/>");
+		document.write(s.delete(4)+"<br/>");
+		document.write(s.has(5)+"<br/>");
+		
+//		Map()其他类型的值可以作为键值
+		var m = new Map();
+		var o = {test:"Hello World!"};
+		m.set(o,"content");
+		document.write(m.get(o));
+		
+		
+	</script>
+</body>
+</html>

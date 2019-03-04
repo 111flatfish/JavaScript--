@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery-效果-显示与隐藏</title>
+	<script src="JQuery.js"></script>
+	<script>
+//		hide(speed，callback)与show（）函数执行显示与隐藏，speed执行速度，toggle（）函数用于切换hide与show函数
+		$(document).ready(function(){
+			$("#button").click(function(){
+//				$("div").hide("slow",function(){
+//					document.write("callback函数执行");
+//				});
+				$("div").toggle("slow");
+			});
+		})
+	</script>
+	<style>
+		div{
+			border: solid 1px #000;
+			background-color: yellow;
+		}
+	</style>
+</head>
+
+<body>
+	<button id="button" >Click me</button>
+	<br/>
+	<div>
+		<p id="ex">我是文字</p>
+	<p>我也是</p>
+	<p>我不是</p>
+	</div>
+	
+	
+</body>
+</html>

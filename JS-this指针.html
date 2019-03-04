@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS-this指针</title>
+	<script>
+	function f(){
+		return e();
+		 function e(){
+			 return 1;
+		 }
+	}
+		alert(f());
+		var name = "b";
+		function f1(){
+			var name = "a";
+			return e();		//window调用，当函数不是对象属性时，直接调用的都是window对象的调用
+			function e(){
+				
+				return this;
+			}
+		}
+		alert(f1().name);
+		
+//		闭包操作
+		var name = "this = window";
+		var o = {
+			name : "o",
+			f:function(){
+			return this;
+			}
+			
+		}
+		var o1 = {
+			name:"o1",
+			f:function(){
+			return o.f;
+		}
+		}
+		var a = o1.f()();	//闭包操作，闭包在那里执行，this所指的调用对象就在那里，o1.f()()=window()
+		alert(a.name);
+		
+		//this是构造函数的实例对象
+		function F2(){
+			this.name  = "我是文字";
+		}
+		var f2 = new F2();
+		alert(f2.name);
+		
+		//this代表当前对象直接量
+		var o2 = {
+			name: "o2",
+			f:function(){
+				return this;
+			}
+		}
+		var m = o2.f();
+		alert(m.name);
+		
+		//this代表全局对象
+		function f3(){
+			this.name = "我是谁的属性？";
+		}
+		f3();
+		alert(window.name);
+		
+		//this代表当前作用域对象
+		var f4 = function(){
+			alert(this);
+		}
+		f4();
+		f5 = new f4();
+		
+		//函数的引用与调用
+		var o3 = {
+			name:"对象o3",
+			f:function(){
+				return this;
+				
+			}
+			
+		}
+		var o4 = {
+			name:"对象o4",		//引用
+			m:o3.f				//m是对象o3的f()方法的一个引用
+		}
+		
+		var o5 = {
+			name:"对象o5",		//调用
+			m:o3.f()			//m是对象o3的f()方法调用之后的值，this指代o3
+		}
+		alert(o4.m().name);			//调用m,this指代调用对象o4
+		
+//		call()和apply（）方法能将方法绑定到指定对象上，改变执行作用域
+		function f6(){
+			alert(this.x + this.y);
+		}
+		var p = {
+			x:1,
+			y:2
+		}
+		f6.call(p);
+		
+		//原型继承
+		function Base(){
+			this.m = function(){
+				return "Base";
+			}
+			this.a = this.m();
+			this.b = this.m;
+			this.c = function(){
+				return this.m();
+			}
+		}
+		
+		function F1(){
+			this.m = function(){			//相同的m方法
+				return "F1";
+			}
+			
+		}
+		F1.prototype = new Base();
+		var f7 = new F1();			//继承的有可能会影响父类中this的代表对象
+		alert(f7.a);				//this指向f7,也就是实例对象，由于原型对象是继承而来的，所以a,b,c，m都成为F1原型对象的属性
+		alert(f7.b());
+		alert(f7.c());				//闭包在哪里执行，this就指向哪里
+		
+//		对于相互依赖的方法，可以把他们定义为私有函数，并以引用的方式公开，这样就可以避免外界对依赖方法的影响
+		function Base2(){
+			var _m = function(){
+				return "Base2";
+			}
+			this.a = _m;				//a为Base2函数的—m方法的引用，this指向的对象通过a引用Base2的—m方法
+			this.b = _m();
+		}
+		
+		
+	</script>
+	
+</head>
+
+<body>
+<!--	this代表当前操作对象-->
+	<input type="button" value="主任是谁？" onclick = "this.value = '是我啊' ">
+</body>
+</html>

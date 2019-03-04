@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理-窗口重置</title>
+</head>
+
+<body>
+	<div id="div1"></div>
+	<script>
+//		保持让盒子的长宽是窗口的0.8
+		var div1 = document.getElementById("div1");
+		div1.style.position = "absolute";
+		div1.style.backgroundColor = "red";
+		div1.style.width = w() * 0.8 +"px";
+		div1.style.height = h() * 0.8 +"px";
+		window.onresize = function(){
+//			重置事件，跟踪窗口大小的改变
+			div1.style.width = w() * 0.8 + "px";
+			div1.style.height = h() * 0.8 + "px";
+		}
+		function w(){
+			if(window.innerWidth)
+				{
+					return window.innerWidth;
+				}
+			else if(document.body&& document.body.clientWidth){
+				return document.body.clientWidth;
+			}
+		}
+		function h(){
+			if(window.innerHeight)
+				{
+					return window.innerHeight;
+				}
+			else if(document.body&& document.body.clientHeight){
+				return document.body.clientHeight;
+			}
+		}
+	</script>
+</body>
+</html>

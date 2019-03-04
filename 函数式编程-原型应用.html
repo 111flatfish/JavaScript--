@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数式编程-原型应用</title>
+	<script>
+		//利用原型对象设置默认值
+		function f(x){
+			this.x = x;
+			
+		}
+		f.prototype.x = 0;
+		var p = new f(2);
+		alert(p.x);
+		delete p.x;
+		alert(p.x);
+		
+		//数据备份
+		function f1(x){
+			this.x = x;
+		}
+		f1.prototype.bakup = function(){
+			for(var i in this)
+				{
+					f1.prototype[i] = this[i]
+				}
+		}
+		var p1 = new f1(2);
+		p1.bakup();
+		p1.x = 10;
+		alert(p1.x);
+		p1 = f1.prototype;
+		alert(p1.x);
+		
+		//原型对象设置只读属性
+		function f3(x,y){
+			if(x)
+				this.x = x;
+			if(y)
+				this.y = y;
+			f3.prototype.x = 0;
+			f3.prototype.y = 0;
+		}
+		function l(a,b){
+			var a = a;
+			var b = b;
+			var w = function(){
+				return Math.abs(a.x - b.x);
+			}
+			var h = function(){
+				return Math.abs(a.y - b.y);
+			}
+			this.len = function(){
+				return Math.sqrt(w()*w() + h()*h());
+			}
+			this.b = function(){
+				function temp(){};
+				temp.prototype = a;
+				return new temp();	
+			}
+			this.e = function(){
+				function temp(){};
+				temp.prototype = b;
+				return new temp();
+			}
+		}
+		
+		var p3 = new f3(1,2);
+		var p4 = new f3(20,30);
+		var l2 = new l(p3,p4);
+		alert(l2.len());
+		l2.b().x = 50;
+		alert(l2.len());
+		
+		
+	</script>
+</head>
+
+<body>
+</body>
+</html>
