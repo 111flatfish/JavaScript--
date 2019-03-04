@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多线程处理-Fibonacci</title>
+	<script src="JQuery.js"></script>
+	<script>
+		$("document").ready(function(){
+			console.log("执行函数");
+			var worker = new Worker("fibonacci.js");
+			worker.onmessage = function(event){
+				var timer2 = (new Date()).valueOf();
+				console.log("执行结果："+event.data+"执行时间："+(timer2 - timer1));
+				document.write((timer2 - timer1)+"<br/>");
+			}
+			var timer1 = (new Date()).valueOf();
+			
+			console.log("开始计时："+timer1);
+			document.write(timer1+"<br/>");
+			worker.postMessage(40);
+		});
+	</script>
+</head>
+
+<body >
+	
+</body>
+</html>
